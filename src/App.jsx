@@ -4,6 +4,8 @@ import './App.css'
 import StockData from './component/StockData';
 import StockChart from './component/StockChart';
 import D3LineChart from './component/D3LineChart';
+import LineCharts from './component/StockCharts';
+import StockCharts from './component/StockCharts';
 
 function App() {
   const [symbol, setSymbol] = useState('');
@@ -31,8 +33,11 @@ function App() {
      {/* {stockData  && (
       <StockChart data={stockData} />
      )} */}
-      {stockData && (
+      {/* {stockData && (
         <D3LineChart data={stockData} symbol={symbol} />
+      )} */}
+      {stockData && (
+        <StockCharts stockUnits={stockData}/>
       )}
       </>
   )

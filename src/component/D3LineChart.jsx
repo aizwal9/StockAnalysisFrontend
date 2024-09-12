@@ -5,6 +5,8 @@ const D3LineChart = ({ data, symbol }) => {
     const chartRef = useRef(null);
     const [chartWidth, setChartWidth] = useState(0);
     const [tooltipData, setTooltipData] = useState(null); // State for tooltip data
+    const [filteredData, setFilteredData] = useState(data); // State for filtered data
+    const [timeFilter, setTimeFilter] = useState('all'); // State for time filter
 
     const margin = { top: 20, right: 20, bottom: 30, left: 40 };
     const width = 960 - margin.left - margin.right;
@@ -34,10 +36,11 @@ const D3LineChart = ({ data, symbol }) => {
             .y(d => yScale(d.close));
 
         // Add chart elements
+        chart.selectAll("path").remove(); // Remove existing path
         chart.append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`)
             .append("path")
-            .datum(data)
+            .datum(filteredData) // Use filteredData
             .attr("d", line)
             .attr("stroke", "steelblue")
             .attr("stroke-width", 2)
@@ -95,6 +98,41 @@ const D3LineChart = ({ data, symbol }) => {
             });
     };
 
+    const filterData = (filter) => {
+        setTimeFilter(filter);
+        const filtered = filter === 'all' ? data : filterDataByTime(data, filter);
+        setFilteredData(filtered);
+    };
+
+    const filterDataByTime = (data, filter) => {
+        const now = new Date();
+        let start;
+        switch (filter) {
+            case 'hour':
+                start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours() - 1); // Last hour
+                break;
+            case 'day':
+                start = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1); // Yesterday
+                break;
+            case 'week':
+                start = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay()); // Start of week
+                break;
+            case 'month':
+                start = new Date(now.getFullYear(), now.getMonth() - 1, 1); // Start of last month
+                break;
+            case 'year':
+                start = new Date(now.getFullYear() - 1, 0, 1); // Start of last year
+                break;
+            case '5year':
+                start = new Date(now.getFullYear() - 5, 0, 1); // Start of 5 years ago
+                break;
+            default:
+                return data; // Default to all data
+        }
+
+        return data.filter(d => new Date(d.date) >= start);
+    };
+
     useEffect(() => {
         createChart();
     }, [data]);
@@ -108,6 +146,16 @@ const D3LineChart = ({ data, symbol }) => {
                     <p>Close Price: ${tooltipData.close.toFixed(2)}</p>
                 </div>
             )}
+            {/* Filter controls */}
+            <div>
+                <button onClick={() => filterData('all')}>All</button>
+                <button onClick={() => filterData('hour')}>Hour</button>
+                <button onClick={() => filterData('day')}>Day</button>
+                <button onClick={() => filterData('week')}>Week</button>
+                <button onClick={() => filterData('month')}>Month</button>
+                <button onClick={() => filterData('year')}>Year</button>
+                <button onClick={() => filterData('5year')}>5 Years</button>
+            </div>
         </>
     );
 };
