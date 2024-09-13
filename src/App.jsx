@@ -6,10 +6,12 @@ import StockChart from './component/StockChart';
 import D3LineChart from './component/D3LineChart';
 import LineCharts from './component/StockCharts';
 import StockCharts from './component/StockCharts';
+import LineChartComponent from './component/LineChartComponent';
+import BookmarkStock from './component/BookmarkStock';
 
 function App() {
   const [symbol, setSymbol] = useState('');
-  const [stockData, setStockData] = useState([]);
+  const [stockData, setStockData] = useState();
 
   const handleSymbolChange = (e) => {
     setSymbol(e.target.value);
@@ -17,7 +19,7 @@ function App() {
 
   const fetchStockData = async () => {
     try {
-      const response = await axios.get(`http://localhost:8090/api/v1/stock/${symbol}`);
+      const response = await axios.get(`http://localhost:8090/api/v1/stock/daily/${symbol}`);
       setStockData(response.data);
       console.log(response.data);
     } catch (error) {
@@ -37,8 +39,10 @@ function App() {
         <D3LineChart data={stockData} symbol={symbol} />
       )} */}
       {stockData && (
-        <StockCharts stockUnits={stockData}/>
+        // <StockCharts stockUnits={stockData.stockUnits}/>
+        <LineChartComponent stockUnits={stockData.stockUnits} />
       )}
+      <BookmarkStock />
       </>
   )
 }
