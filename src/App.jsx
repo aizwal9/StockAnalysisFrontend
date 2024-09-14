@@ -28,22 +28,45 @@ function App() {
   };
 
   return (
-    <>
-      <input type="text" value={symbol} onChange={handleSymbolChange} placeholder="Enter Stock symbol" />
-      <button onClick={fetchStockData}>Fetch Data</button>
-      {/* <StockData stockData={stockData}></StockData> */}
-     {/* {stockData  && (
-      <StockChart data={stockData} />
-     )} */}
-      {/* {stockData && (
-        <D3LineChart data={stockData} symbol={symbol} />
-      )} */}
-      {stockData && (
-        // <StockCharts stockUnits={stockData.stockUnits}/>
-        <LineChartComponent stockUnits={stockData.stockUnits} />
-      )}
-      <BookmarkStock />
-      </>
+    <div >
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <input
+          type="text"
+          style={{
+            width: '160px',
+            height: '30px',
+            marginBottom: '15px',
+            padding: '5px',
+            fontSize: '18px',
+            borderRadius: '5px',
+            border: '1px solid #ccc'
+          }}
+          value={symbol}
+          onChange={handleSymbolChange}
+          placeholder="Enter Stock symbol"
+        />
+        <button
+          onClick={fetchStockData}
+          style={{
+            padding: '10px 20px',
+            fontSize: '20px',
+            borderRadius: '10px',
+            backgroundColor: '#4CAF50',
+            color: '#fff',
+            border: 'none',
+            cursor: 'pointer'
+          }}
+        >
+          Fetch Data
+        </button>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        {stockData && (
+          <LineChartComponent stockUnits={stockData.stockUnits} />
+        )}
+        <BookmarkStock />
+      </div>
+    </div>
   )
 }
 

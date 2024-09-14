@@ -29,16 +29,7 @@ function LineChartComponent({ stockUnits }) {
     });
 
     return (
-        <>
-            <select value={timeFrame} onChange={(e) => setTimeFrame(e.target.value)}>
-                <option value="1week">1 Week</option>
-                <option value="1month">1 Month</option>
-                <option value="3months">3 Months</option>
-                <option value="6months">6 Months</option>
-                <option value="1year">1 Year</option>
-                <option value="5years">5 Years</option>
-                <option value="all">All</option>
-            </select>
+        <div>
             <LineChart
                 width={1200}
                 height={500}
@@ -68,7 +59,28 @@ function LineChartComponent({ stockUnits }) {
                 />
                 <Line type="monotone" dataKey="close" stroke="#8884d8" activeDot={{ r: 8 }} />
             </LineChart>
-        </>
+            <select
+                value={timeFrame}
+                onChange={(e) => setTimeFrame(e.target.value)}
+                style={{
+                    padding: '8px 16px',
+                    fontSize: '16px',
+                    borderRadius: '4px',
+                    border: '1px solid #ccc',
+                    maxWidth: '200px',
+                    textAlign: 'center',
+                    height:'40px'
+                }}
+            >
+                <option value="1week">1 Week</option>
+                <option value="1month">1 Month</option>
+                <option value="3months">3 Months</option>
+                <option value="6months">6 Months</option>
+                <option value="1year">1 Year</option>
+                <option value="5years">5 Years</option>
+                <option value="all">All</option>
+            </select>
+        </div>
     );
 }
 

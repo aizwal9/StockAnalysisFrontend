@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 function BookmarkStock() {
     const [stock, setStock] = useState('');
@@ -36,39 +38,57 @@ function BookmarkStock() {
     return (
         <div>
             <h2>Bookmark Stock</h2>
-            <form>
-                <label>
-                    Stock Symbol:
+            <form style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <label style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                    <span style={{ width: '150px' }}>Stock Symbol</span>
                     <input
                         type="text"
                         value={stock}
                         onChange={(e) => setStock(e.target.value)}
+                        style={{ width: '150px', height: '30px', marginBottom: '10px' }}
                     />
                 </label>
-                <label>
-                    Operator:
-                    <input
-                        type="text"
+                <label style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                    <span style={{ width: '150px' }}>Operator</span>
+                    <select
                         value={operator}
                         onChange={(e) => setOperator(e.target.value)}
-                    />
+                        style={{ width: '150px', height: '30px', marginBottom: '10px' }}
+                    >
+                        <option value="">Select Operator</option>
+                        <option value=">">&gt;</option>
+                        <option value="<">&lt;</option>
+                        <option value="=">&eq;</option>
+                    </select>
                 </label>
-                <label>
-                    Amount:
+                <label style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                    <span style={{ width: '150px' }}>Amount</span>
                     <input
                         type="number"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
+                        style={{ width: '150px', height: '30px', marginBottom: '10px' }}
                     />
                 </label>
-                <button onClick={handleSave}>Save</button>
+                <button onClick={handleSave} style={{ width: '150px', height: '40px', alignItems: 'center' }}>
+                    Save
+                </button>
             </form>
             <h2>Bookmarks</h2>
-            <ul>
+            <ul style={{ display: 'flex', alignItems: 'center' }}>
                 {bookmarks && bookmarks.map((bookmark) => (
                     <ul key={bookmark.stock}>
-                        {bookmark.stock} {bookmark.operator} {bookmark.amount}
-                        <button onClick={() => handleRemove(bookmark.stock)}>x</button>
+                        <span style={{ marginRight: '20px' }}>
+                            {bookmark.stock} {bookmark.operator} {bookmark.amount}
+                        </span>
+                        <button onClick={() => handleRemove(bookmark.stock)}
+                            style={{
+                                padding: '2px 8px',
+                                fontSize: '20px',
+                                borderRadius: '4px',
+                            }}>
+                            <DeleteIcon sx={{ fontSize: 18 }} />
+                        </button>
                     </ul>
                 ))}
             </ul>
