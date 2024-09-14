@@ -1,5 +1,6 @@
 # Stock Market Tracker UI
 A user-friendly and interactive dashboard for visualizing stock market data, built with React and Chart.js.\
+Hostel url - https://stock-analysis-5zpyhze93-aizwals-projects.vercel.app/ \
 Backend url - https://github.com/aizwal9/StockDataAnalytics \
 Notifier url - https://github.com/aizwal9/stock-subscriber
 ## Features:
