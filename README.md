@@ -16,7 +16,8 @@ A user-friendly and interactive dashboard for visualizing stock market data, bui
 - HTML/CSS
 
 ## Landing Page
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b8fad368-00db-4c00-a6ab-0dc1b3815236/df54b325-d09a-4edc-aaea-28bef2c55eca/image.png)
+![1](https://github.com/user-attachments/assets/f0ca4b31-ebab-4184-8d5b-a47863acfb80)
 
 ## Stock Fetch
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b8fad368-00db-4c00-a6ab-0dc1b3815236/499dfddd-b4a6-4ed7-a6d8-5784bb62b06f/image.png)
+![image](https://github.com/user-attachments/assets/07aad614-22ff-4645-a777-7fa7fe47ef8f)
+
