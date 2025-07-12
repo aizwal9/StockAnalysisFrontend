@@ -18,9 +18,6 @@ Notifier url - https://github.com/aizwal9/stock-subscriber
 - Chart.js
 - HTML/CSS
 
-## Landing Page
-![1](https://github.com/user-attachments/assets/f0ca4b31-ebab-4184-8d5b-a47863acfb80)
-
 ## Stock Fetch
-![image](https://github.com/user-attachments/assets/07aad614-22ff-4645-a777-7fa7fe47ef8f)
+![image](https://github.com/aizwal9/StockAnalysisFrontend/blob/main/image.png?raw=true)
 
